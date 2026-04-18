@@ -1,2 +1,21 @@
-# Car-Rental-Project
-A fully functional Car Rental Management System with a simulated LocalStorage database, built using Vanilla JS, HTML, and CSٍS
+# 🏎️ Speed Rentals - Car Rental Management System
+
+## 📌 عن المشروع (About The Project)
+هذا المشروع عبارة عن نظام تفاعلي متكامل لإدارة شركة تأجير سيارات. تم تصميم الموقع بواجهة مستخدم عصرية (Dark Luxury Theme)، مع بناء "محاكاة لقاعدة بيانات" (Database Simulation) لربط الواجهة الأمامية بالبيانات وضمان تفاعلها بشكل واقعي دون الحاجة لسيرفر خارجي في هذه المرحلة.
+
+## ✨ أهم المميزات (Key Features)
+* **محاكاة قاعدة البيانات (Data Persistence):** استخدام تقنية الـ `LocalStorage` في الـ JavaScript لحفظ بيانات السيارات، وتحديث حالة الحجز، وضمان عدم ضياع الداتا عند عمل Refresh للصفحة.
+* **بحث وفلترة لحظية (Real-time Filter):** محرك بحث ديناميكي للبحث عن السيارات حسب الماركة أو الموديل.
+* **نظام حجز تفاعلي (Interactive Booking):** نموذج حجز منبثق (Modal) يقوم بتغيير حالة السيارة (Availability) في قاعدة البيانات الافتراضية فور إتمام الحجز.
+* **تصميم عصري ومتجاوب (Modern UI/UX):** تصميم يدعم جميع الشاشات مع تأثيرات حركية (Animations) وتأثير الـ Glassmorphism العصري.
+
+## 🛠️ التقنيات المستخدمة (Technologies Built With)
+* **HTML5:** لبناء الهيكل الأساسي.
+* **CSS3:** لتنسيق الألوان، التصميم المتجاوب، والتأثيرات الحركية.
+* **Vanilla JavaScript:** لبرمجة العمليات المنطقية (Logic)، التعامل مع الـ DOM، وبناء محاكاة الـ Database.
+
+## 👥 فريق العمل (Team Members)
+**[Badr}* *{Mohamed Tarek}**
+
+---
+*تم تطوير هذا المشروع كجزء من التطبيق العملي لمادة قواعد البيانات (Database Systems).*
