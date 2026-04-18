@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE | Premium Car Rental</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">LUXE<span>.</span></div>
+        <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+            <li><a href="#fleet">Our Fleet</a></li>
+            <li><a href="#used-cars">Used Cars</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#" id="supportLink">Support</a></li>
+        </ul>
+        <div class="nav-action" style="display: flex; align-items: center;">
+            <div id="authContainer" style="margin-right: 15px; display: flex; align-items: center; gap: 15px;">
+                <span id="userNameDisplay" style="display:none; color: var(--primary-blue); font-weight: 600; font-size: 0.85rem;"></span>
+                <button class="btn btn-outline nav-btn" id="authBtn">👤 Sign In</button>
+            </div>
+            <button class="btn btn-outline nav-btn" id="cartToggle" style="position: relative; margin-right: 15px;">
+                🛒 Cart <span id="cartBadge" style="background: var(--primary-blue); color: black; padding: 2px 6px; border-radius: 10px; font-size: 0.75rem; font-weight: bold;">0</span>
+            </button>
+            <button class="btn btn-outline nav-btn" id="adminToggle" style="margin-right: 15px; display: none;">⚙️ Admin</button>
+            <button class="btn btn-outline nav-btn" id="regionToggle" style="margin-right: 15px;" title="Change Region & Currency"><span id="regionFlag">🌍</span> <span id="regionCurrencyCode">USD</span></button>
+            <button class="btn btn-outline nav-btn" id="theme-toggle" style="display: flex;">🔄 Reset DB</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Drive Your <span>Dream.</span></h1>
+            <p>Experience the thrill of luxury. Rent the world's most exclusive cars today.</p>
+            <div class="hero-actions">
+                <a href="#fleet" class="btn btn-primary">Explore Fleet</a>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </header>
+
+    <!-- Fleet Section -->
+    <section id="fleet" class="fleet-section">
+        <div class="section-header">
+            <h2>Our Exclusive Fleet</h2>
+            <p>Select your perfect ride for the ultimate experience.</p>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="filter-container glass">
+            <input type="text" id="searchInput" placeholder="Search by brand or model (e.g., Porsche, 911)...">
+            <select id="brandFilter">
+                <option value="All">All Brands</option>
+                <option value="Mercedes">Mercedes-Benz</option>
+                <option value="BMW">BMW</option>
+                <option value="Porsche">Porsche</option>
+                <option value="Lamborghini">Lamborghini</option>
+                <option value="Rolls Royce">Rolls Royce</option>
+                <option value="Audi">Audi</option>
+            </select>
+        </div>
+
+        <!-- Car Grid -->
+        <div class="car-grid" id="carGrid">
+            <!-- Cars will be injected here via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Used Cars Section -->
+    <section id="used-cars" class="fleet-section" style="background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 255, 0.05) 50%, transparent 100%);">
+        <div class="section-header">
+            <h2>Used Cars <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400; margin-left: 10px;">Budget-Friendly Rentals</span></h2>
+            <p>Quality pre-owned vehicles at affordable daily rates — great for everyday driving.</p>
+        </div>
+
+        <!-- Used Car Filter -->
+        <div class="filter-container glass">
+            <input type="text" id="usedSearchInput" placeholder="Search by brand or model (e.g., Kia, Sportage)...">
+            <select id="usedBrandFilter">
+                <option value="All">All Brands</option>
+                <option value="Kia">Kia</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Honda">Honda</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Ford">Ford</option>
+                <option value="Chevrolet">Chevrolet</option>
+            </select>
+        </div>
+
+        <!-- Used Car Grid -->
+        <div class="car-grid" id="usedCarGrid">
+            <!-- Used cars will be injected here via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="architecture-section" style="padding: 100px 10%; max-width: 1400px; margin: 0;">
+        <div class="section-header">
+            <h2 style="font-size: 3rem; margin-bottom: 15px;">Database Architecture</h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0;">The robust ERD schema powering our luxury rental platform.</p>
+        </div>
+        <div class="mermaid-container glass" style="padding: 50px; border-radius: 16px; overflow-x: auto; background: linear-gradient(145deg, rgba(10,10,10,0.95) 0%, rgba(0,0,0,1) 100%); border: 1px solid rgba(0, 212, 255, 0.3); box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 30px rgba(0, 212, 255, 0.05);">
+            <div class="mermaid" style="min-width: 1000px; text-align: center; margin: 0 auto;">
+                erDiagram
+                    CUSTOMER ||--o{ BOOKING : "books"
+                    CAR ||--o{ BOOKING : "booked in"
+                    CUSTOMER ||--o{ REVIEW : "writes"
+                    CAR ||--o{ REVIEW : "receives"
+                    BRANCH ||--o{ CAR : "has"
+                    BRANCH ||--o{ EMPLOYEE : "employs"
+                    EMPLOYEE ||--o{ BOOKING : "handles"
+                    CAR ||--|| INSURANCE : "has"
+                    CAR-TYPE ||--o{ CAR : "classifies"
+                    BOOKING ||--|| PAYMENT : "has"
+                    
+                    CUSTOMER {
+                        string Customer_ID PK
+                        string Name
+                        string Email
+                        string Address
+                        string Phone
+                    }
+                    CAR {
+                        string Car_ID PK
+                        string Brand
+                        string Model
+                        int Year
+                        float Price
+                        string Status
+                    }
+                    BOOKING {
+                        string Booking_ID PK
+                        date Start_Date
+                        date End_Date
+                        float Total_Cost
+                    }
+                    PAYMENT {
+                        string Pay_ID PK
+                        float Amount
+                        date Pay_Date
+                        string Method
+                    }
+                    REVIEW {
+                        string Review_ID PK
+                        int Rating
+                        date Date
+                    }
+                    BRANCH {
+                        string Branch_ID PK
+                        string Name
+                        string Location
+                    }
+                    EMPLOYEE {
+                        string Employee_ID PK
+                        string Name
+                        string Role
+                    }
+                    INSURANCE {
+                        string Insurance_ID PK
+                        string Company
+                    }
+                    CAR-TYPE {
+                        string Type_Name PK
+                        string Description
+                    }
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section" style="padding: 100px 10%; text-align: left; max-width: 900px; margin: 0;">
+        <div class="section-header" style="margin-bottom: 40px;">
+            <h2 style="font-size: 3rem; margin-bottom: 15px;">About Us</h2>
+        </div>
+        <div class="about-content glass" style="padding: 50px; border-radius: 16px; background: linear-gradient(145deg, rgba(10,10,10,0.9) 0%, rgba(0,0,0,0.95) 100%); border: 1px solid rgba(0, 212, 255, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+            <p style="font-size: 1.3rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 20px;">
+                We are a passionate team dedicated to delivering the ultimate luxury driving experience. This is our digital home, crafted exclusively to put you behind the wheel of the world's most breathtaking vehicles.
+            </p>
+            <p style="font-size: 1.2rem; color: var(--primary-blue); font-weight: 600; font-style: italic;">
+                "We want this website to be exactly what you're looking for—seamless, elegant, and designed purely for you."
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>LUXE<span>.</span></h3>
+                <p>The premier destination for luxury and exotic car rentals.</p>
+            </div>
+            <div class="footer-links">
+                <p>&copy; 2026 LUXE Premium Rentals. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal glass">
+            <button class="close-btn" id="closeModal">&times;</button>
+            <h3 id="modalCarTitle">Book Mercedes-Benz S-Class</h3>
+            <p class="modal-price" id="modalCarPrice">$500 / day</p>
+            <form id="bookingForm">
+                <input type="hidden" id="carIdInput">
+                <div class="form-group">
+                    <label for="rentalDays">Days to Rent</label>
+                    <input type="number" id="rentalDays" min="1" max="30" required placeholder="e.g. 3">
+                </div>
+                <div class="form-total">
+                    <span>Total Cost:</span>
+                    <strong id="totalCost">$0</strong>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Add to Cart</button>
+            </form>
+
+            <!-- Reviews Section -->
+            <div class="reviews-section" style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+                <h4 style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    Customer Reviews 
+                    <span id="modalAverageRating" style="color: var(--primary-blue); font-size: 0.9rem;">⭐ 0.0</span>
+                </h4>
+                
+                <div id="reviewsList" style="max-height: 200px; overflow-y: auto; margin-bottom: 20px; padding-right: 5px;">
+                    <!-- Reviews populated via JS -->
+                </div>
+
+                <div id="addReviewContainer">
+                    <form id="addReviewForm">
+                        <div class="form-group" style="margin-bottom: 10px;">
+                            <select id="reviewRating" required style="width: 100%; padding: 8px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); color: white; border-radius: 4px; outline: none;">
+                                <option value="" disabled selected>Select Rating</option>
+                                <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                                <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                                <option value="3">⭐⭐⭐ (3/5)</option>
+                                <option value="2">⭐⭐ (2/5)</option>
+                                <option value="1">⭐ (1/5)</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px;">
+                            <textarea id="reviewComment" required placeholder="Write your review here..." style="width: 100%; padding: 8px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); color: white; border-radius: 4px; outline: none; resize: vertical; min-height: 60px;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-outline w-100" style="padding: 8px;">Submit Review</button>
+                    </form>
+                    <p id="reviewAuthPrompt" style="display: none; text-align: center; color: var(--text-muted); font-size: 0.85rem; margin: 10px 0;">
+                        Please <a href="#" id="reviewSignInBtn" style="color: var(--primary-blue); text-decoration: none;">Sign In</a> to leave a review.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartSidebar">
+        <div class="cart-panel glass">
+            <div class="cart-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color);">
+                <h3 style="margin: 0; font-size: 1.5rem;">Your Booking Cart</h3>
+                <button class="close-btn" id="closeCart" style="position: static; margin: 0;">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItemsContainer" style="flex: 1; overflow-y: auto; padding-right: 10px; margin-bottom: 20px;">
+                <!-- Cart items injected here -->
+            </div>
+            <div class="cart-footer" style="border-top: 1px solid var(--border-color); padding-top: 20px;">
+                <div class="form-total" style="margin-bottom: 20px; border: none; padding: 0;">
+                    <span>Grand Total:</span>
+                    <strong id="cartGrandTotal">$0</strong>
+                </div>
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label for="userName">Full Name</label>
+                        <input type="text" id="userName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="userPhone">Contact Number</label>
+                        <input type="tel" id="userPhone" required placeholder="+1 234 567 8900">
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentMethod">Payment Method</label>
+                        <select id="paymentMethod" required style="width: 100%; padding: 12px 15px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); color: white; border-radius: 4px; outline: none;">
+                            <option value="credit_card">Credit Card</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="crypto">Cryptocurrency</option>
+                            <option value="cash">Cash on Pickup</option>
+                        </select>
+                    </div>
+                    <div class="form-group checkbox-group" style="display: flex; align-items: center; gap: 10px; margin-top: 15px; margin-bottom: 20px;">
+                        <input type="checkbox" id="hasLicense" required style="width: auto; cursor: pointer;">
+                        <label for="hasLicense" style="margin-bottom: 0; cursor: pointer;">I hold a valid driver's license.</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100" id="checkoutBtn" disabled>Checkout Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <span class="toast-icon">✓</span>
+            <div class="toast-text">
+                <h4>Success!</h4>
+                <p id="toastMessage">Your booking has been confirmed.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Overlay Modal -->
+    <div class="modal-overlay" id="authOverlay">
+        <div class="modal glass" style="max-width: 400px;">
+            <button class="close-btn" id="closeAuthBtn">&times;</button>
+            <h3 id="authTitle" style="text-align: center; margin-bottom: 20px;">Sign In</h3>
+            
+            <form id="authForm">
+                <!-- Register Fields (Hidden by default) -->
+                <div id="registerFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="authName">Full Name</label>
+                        <input type="text" id="authName" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="authEmail">Email Address</label>
+                        <input type="email" id="authEmail" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="authPhone">Phone Number</label>
+                        <input type="tel" id="authPhone" placeholder="+1 234 567 8900">
+                    </div>
+                    <div class="form-group">
+                        <label for="authAddress">Home Address</label>
+                        <input type="text" id="authAddress" placeholder="123 Luxury Lane, CA">
+                    </div>
+                </div>
+
+                <!-- Common Login Fields -->
+                <div class="form-group">
+                    <label for="authUsername">Username</label>
+                    <input type="text" id="authUsername" required placeholder="johndoe">
+                </div>
+                <div class="form-group">
+                    <label for="authPassword">Password</label>
+                    <input type="password" id="authPassword" required placeholder="••••••••">
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100" id="authSubmitBtn" style="margin-top: 10px;">Sign In</button>
+            </form>
+            
+            <p style="text-align: center; margin-top: 20px; color: var(--text-muted); font-size: 0.9rem;">
+                <span id="authSwitchText">Don't have an account?</span> 
+                <a href="#" id="authSwitchBtn" style="color: var(--primary-blue); text-decoration: none; font-weight: bold;">Register</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Overlay -->
+    <div class="admin-overlay" id="adminOverlay">
+        <div class="admin-panel glass">
+            <div class="admin-header">
+                <h2>Admin Dashboard</h2>
+                <button class="close-btn" id="closeAdminBtn" style="position: relative; top: 0; right: 0;">&times;</button>
+            </div>
+            
+            <div class="admin-metrics">
+                <div class="metric-card glass">
+                    <h3>Total Revenue</h3>
+                    <p id="adminTotalRevenue" style="color: var(--primary-blue); font-size: 2rem; font-weight: bold;">$0</p>
+                </div>
+                <div class="metric-card glass">
+                    <h3>Active Bookings</h3>
+                    <p id="adminActiveBookings" style="color: var(--primary-blue); font-size: 2rem; font-weight: bold;">0</p>
+                </div>
+            </div>
+
+            <div class="admin-table-container" style="margin-top: 30px; overflow-x: auto;">
+                <h3 style="margin-bottom: 15px;">Active Rentals</h3>
+                <table class="admin-table" style="width: 100%; text-align: left; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--border-color);">
+                            <th style="padding: 10px;">Car</th>
+                            <th style="padding: 10px;">Customer</th>
+                            <th style="padding: 10px;">Start Date</th>
+                            <th style="padding: 10px;">End Date</th>
+                            <th style="padding: 10px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminRentalsBody">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Chat Widget -->
+    <div id="supportWidget" class="support-widget glass">
+        <div class="support-header">
+            <h4>Live Support</h4>
+            <button id="closeSupport">&times;</button>
+        </div>
+        <div class="support-contact">
+            <p>Support Email: <a href="mailto:Elsona2yaElTare5ya@gmail.com" style="color:var(--primary-blue); text-decoration:none;"><strong>Elsona2yaElTare5ya@gmail.com</strong></a></p>
+        </div>
+        <div id="chatHistory" class="chat-history">
+            <div class="chat-msg bot">Hello! How can we assist you with your luxury rental today?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
+            <button id="sendChatBtn" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'base', 
+            themeVariables: { 
+                background: 'transparent',
+                primaryColor: '#111111', 
+                primaryTextColor: '#ffffff', 
+                primaryBorderColor: '#00d4ff', 
+                lineColor: '#00d4ff',
+                secondaryColor: '#1a1a1a',
+                tertiaryColor: '#222222',
+                fontFamily: 'Outfit, sans-serif',
+                fontSize: '16px',
+                edgeLabelBackground: '#000000'
+            } 
+        });
+    </script>
+    <script src="script.js"></script>
+
+    <!-- Region & Currency Selector Overlay -->
+    <div id="regionOverlay" class="region-overlay">
+        <div class="region-dialog glass">
+            <h2 style="color: var(--primary-blue); text-align: left; margin-bottom: 8px;">🌍 Select Your Region</h2>
+            <p style="text-align: left; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;">Prices will be displayed in your local currency.</p>
+            <div class="region-grid">
+                <button class="region-btn" data-region="us">🇺🇸<span>United States</span><small>USD $</small></button>
+                <button class="region-btn" data-region="eg">🇪🇬<span>Egypt</span><small>EGP £</small></button>
+                <button class="region-btn" data-region="gb">🇬🇧<span>United Kingdom</span><small>GBP £</small></button>
+                <button class="region-btn" data-region="eu">🇪🇺<span>Europe</span><small>EUR €</small></button>
+                <button class="region-btn" data-region="sa">🇸🇦<span>Saudi Arabia</span><small>SAR ﷼</small></button>
+                <button class="region-btn" data-region="ae">🇦🇪<span>UAE</span><small>AED د.إ</small></button>
+                <button class="region-btn" data-region="kw">🇰🇼<span>Kuwait</span><small>KWD د.ك</small></button>
+                <button class="region-btn" data-region="tr">🇹🇷<span>Turkey</span><small>TRY ₺</small></button>
+                <button class="region-btn" data-region="jo">🇯🇴<span>Jordan</span><small>JOD JD</small></button>
+                <button class="region-btn" data-region="qa">🇶🇦<span>Qatar</span><small>QAR ر.ق</small></button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
